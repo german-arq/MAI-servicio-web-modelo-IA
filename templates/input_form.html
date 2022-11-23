@@ -1,14 +1,26 @@
-{% block title %}Registro de usuarios{% endblock %}
+{% block title %}Predección de tipo de Bien PH{% endblock %}
 {% block content %}
     <form action="" method="post">
         <label for="area">Área: </label>
-        <input type="text" id="name" name="name" /><br>
+        <input type="text" id="area" name="area" /><br>
 
-        <label for="email">Perimetro: </label>
-        <input type="text" id="email" name="email" /><br>
+        <label for="perimetro">Perimetro: </label>
+        <input type="text" id="perimetro" name="perimetro" /><br>
 
-        <label for="password">Cantidad Vertices: </label>
-        <input type="password" id="password" name="password" /><br>
+        <label for="cantidad_vertices">Cantidad Vertices: </label>
+        <input type="text" id="cantidad_vertices" name="cantidad_vertices" /><br>
+
+        <label for="nivel">Nivel: </label>
+        <input type="text" id="nivel" name="nivel" /><br>
+
+        <label for="rmc_largo">RMC(Largo): </label>
+        <input type="text" id="rmc_largo" name="rmc_largo" /><br>
+
+        <label for="rmc_alto">RMC(Alto): </label>
+        <input type="text" id="rmc_alto" name="rmc_alto" /><br>
+
+        <label for="rmc_ratio">RMC(Ratio): </label>
+        <input type="text" id="rmc_ratio" name="rmc_ratio" /><br>
 
         <input type="submit" id="send-signup" name="signup" value="Predecir" />
     </form>
