@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 
 import joblib
+import boto3
 
 app = Flask(__name__)
 
@@ -33,7 +34,24 @@ def prediccion(data):
 
     bien_data = [float(formated_data.get('Area')), float(formated_data.get('Perimetro')), int(formated_data.get('Cantidad de vertices')), float(formated_data.get('Nivel')), float(formated_data.get('RMC Largo')), float(formated_data.get('RMC Alto')), float(formated_data.get('RMC Ratio'))]
 
+    # Predicción con Endpoint SageMaker
+    endpoint = 'sagemaker-scikit-learn-2022-11-25-23-15-58-775'
+    client = boto3.client('sagemaker-runtime', 'us-east-1')
+
+    response = client.invoke_endpoint(EndpointName=endpoint, Body=json.dumps(bien_data), ContentType='application/json')
+
+    print(response)
+
+    prediccion = json.loads(response['Body'].read().decode())
+
+    print(prediccion)
+
+
+
+    # Predicción con modelo local
     prediccion = model.predict([bien_data])
+
+
     complemento = f"El Bien con características: {bien_data} es"
     respuesta = f"{complemento} PRIVADO" if prediccion[0] == 0 else f"{complemento} COMÚN"
 
